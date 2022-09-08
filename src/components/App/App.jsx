@@ -5,6 +5,8 @@ import './App.css';
 import Feeling from '../Feeling/Feeling.jsx';
 import Content from '../Content/Content.jsx';
 import Support from '../Support/Support.jsx';
+import Comments from '../Comments/Comments.jsx';
+import Review from '../Review/Review.jsx';
 
 function App() {
 
@@ -24,6 +26,12 @@ function App() {
           </Route>
           <Route exact path="/support">
             <Support />
+          </Route>
+          <Route exact path="/comments">
+            <Comments />
+          </Route>
+          <Route exact path="/review">
+            <Review />
           </Route>
         </div>
       </Router>
