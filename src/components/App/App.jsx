@@ -7,6 +7,7 @@ import Content from '../Content/Content.jsx';
 import Support from '../Support/Support.jsx';
 import Comments from '../Comments/Comments.jsx';
 import Review from '../Review/Review.jsx';
+import SubmitSuccess from '../SubmitSuccess/SubmitSuccess.jsx';
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/review">
             <Review />
+          </Route>
+          <Route exact path="/submit-success">
+            <SubmitSuccess />
           </Route>
         </div>
       </Router>
