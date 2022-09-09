@@ -24,7 +24,7 @@ const Feeling = () => {
                 main: '#008F8C'
             }
         }
-    });
+    }); // end theme
 
     return  <div>
                 <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
@@ -47,25 +47,28 @@ const Feeling = () => {
                 <br />
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
+                    elevation="10"
                 >
                     <CardContent>
-                    <Typography variant="h5">How are you feeling today?</Typography>
-                    <Typography variant="overline">1: feeling pretty bad. 5: feeling awesome!</Typography>
-                    <form>
-                        <TextField 
-                            variant="outlined" 
-                            required 
-                            size="small" 
-                            sx={{backgroundColor: 'white'}} 
-                            onChange={(event) => dispatch({type: 'append'})} 
-                            type="number" 
-                        />
-                    </form>
-                    <div style={{marginTop: 10}}>
-                        <ThemeProvider theme={theme}>
-                            <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
-                        </ThemeProvider>
-                    </div>
+                        <Typography variant="h5">How are you feeling today?</Typography>
+                        <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
+                        <br />
+                        <form>
+                            <TextField 
+                                variant="outlined" 
+                                required 
+                                size="small" 
+                                sx={{backgroundColor: 'white'}} 
+                                onChange={(event) => dispatch({type: 'append'})} 
+                                type="number" 
+                            />
+                        </form>
+                        <br />
+                        <div>
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
+                            </ThemeProvider>
+                        </div>
                     </CardContent>
                 </Card>
             </div>

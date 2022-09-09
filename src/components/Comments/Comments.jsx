@@ -1,6 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Comments = () => {
 
@@ -11,8 +16,16 @@ const Comments = () => {
         history.push('/review');
     } // end toReview
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#008F8C'
+            }
+        }
+    }); // end theme
+
     return  <div>
-                <Breadcrumbs>
+                <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
                     <Typography color="text.secondary">
                         Feeling
                     </Typography>
@@ -29,12 +42,34 @@ const Comments = () => {
                         Review
                     </Typography>
                 </Breadcrumbs>
-                <h2>Any comments you want to leave?</h2>
-                <form>
-                    <input type="text" />
-                </form>
                 <br />
-                <button onClick={toReview}>Next</button>
+                <Card 
+                    sx={{backgroundColor: "#FACFCE"}}
+                    elevation="10"
+                >
+                    <CardContent>
+                        <Typography variant="h5">Any comments?</Typography>
+                        <br />
+                        <form>
+                            <TextField 
+                                    variant="outlined" 
+                                    multiline
+                                    required 
+                                    size="small" 
+                                    sx={{backgroundColor: 'white'}} 
+                                    type="text" 
+                            />
+                        </form>
+                        <br />
+                        <div>
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained" color="primary" onClick={toReview}>Next</Button>
+                            </ThemeProvider>
+                        </div>
+
+                    </CardContent>
+                </Card>
+                
             </div>
 }
 
