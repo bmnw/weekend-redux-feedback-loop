@@ -54,7 +54,6 @@ const Comments = () => {
                             <TextField 
                                     variant="outlined" 
                                     multiline
-                                    required 
                                     size="small" 
                                     sx={{backgroundColor: 'white'}} 
                                     type="text" 
