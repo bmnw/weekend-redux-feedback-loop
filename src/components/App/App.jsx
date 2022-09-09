@@ -9,6 +9,7 @@ import Support from '../Support/Support.jsx';
 import Comments from '../Comments/Comments.jsx';
 import Review from '../Review/Review.jsx';
 import SubmitSuccess from '../SubmitSuccess/SubmitSuccess.jsx';
+import Container from '@mui/material/Container';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
     <div className='App'>
       <Header />
       <Router>
-        <div>
+        <Container maxWidth="xs">
           <Route exact path="/">
             <Feeling />
           </Route>
@@ -35,7 +36,7 @@ function App() {
           <Route exact path="/submit-success">
             <SubmitSuccess />
           </Route>
-        </div>
+        </Container>
       </Router>
 
     </div>

@@ -12,7 +12,7 @@ const Comments = () => {
     } // end toReview
 
     return  <div>
-                <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
+                <Breadcrumbs>
                     <Typography color="text.secondary">
                         Feeling
                     </Typography>

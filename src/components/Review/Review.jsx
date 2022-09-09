@@ -3,7 +3,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 const Review = () => {
     return  <div>
-                <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
+                <Breadcrumbs>
                     <Typography color="text.secondary">
                         Feeling
                     </Typography>

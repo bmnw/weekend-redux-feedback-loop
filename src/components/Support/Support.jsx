@@ -12,7 +12,7 @@ const Support = () => {
     } // end toComments
 
     return  <div>
-                <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
+                <Breadcrumbs>
                     <Typography color="text.secondary">
                         Feeling
                     </Typography>

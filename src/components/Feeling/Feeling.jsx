@@ -2,6 +2,11 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Feeling = () => {
 
@@ -12,6 +17,14 @@ const Feeling = () => {
         console.log('in toContent');
         history.push('/content');
     } // end toContent
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#008F8C'
+            }
+        }
+    });
 
     return  <div>
                 <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
@@ -31,14 +44,30 @@ const Feeling = () => {
                         Review
                     </Typography>
                 </Breadcrumbs>
-                <h2>How are you feeling today?</h2>
-                <h3>On a scale of 1-5, let us know how you're feeling today.</h3>
-                <h3>1: feeling pretty bad. 5: feeling awesome!</h3>
-                <form>
-                    <input onChange={(event) => dispatch({type: 'append'})} type="number" />
-                </form>
                 <br />
-                <button onClick={toContent}>Next</button>
+                <Card 
+                    sx={{backgroundColor: "#FACFCE"}}
+                >
+                    <CardContent>
+                    <Typography variant="h5">How are you feeling today?</Typography>
+                    <Typography variant="overline">1: feeling pretty bad. 5: feeling awesome!</Typography>
+                    <form>
+                        <TextField 
+                            variant="outlined" 
+                            required 
+                            size="small" 
+                            sx={{backgroundColor: 'white'}} 
+                            onChange={(event) => dispatch({type: 'append'})} 
+                            type="number" 
+                        />
+                    </form>
+                    <div style={{marginTop: 10}}>
+                        <ThemeProvider theme={theme}>
+                            <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
+                        </ThemeProvider>
+                    </div>
+                    </CardContent>
+                </Card>
             </div>
 }
 

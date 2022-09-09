@@ -12,7 +12,7 @@ const Content = () => {
     } // end toSupport
 
     return  <div>
-                <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
+                <Breadcrumbs>
                     <Typography color="text.secondary">
                         Feeling
                     </Typography>
