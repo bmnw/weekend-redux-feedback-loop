@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -9,6 +10,13 @@ import Grid from '@mui/material/Grid';
 
 const Review = () => {
 
+    const history = useHistory();
+
+    const toComments = () => {
+        console.log('in toComments');
+        history.push('/comments');
+    } // end toComments
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -16,6 +24,10 @@ const Review = () => {
             }
         }
     }); // end theme
+
+    const submitFeedback = () => {
+        console.log('in submitFeedback');
+    } // end submitFeedback
 
     return  <div>
                 <Breadcrumbs>
@@ -38,7 +50,7 @@ const Review = () => {
                 <br />
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">Review Your Feedback</Typography>
@@ -59,8 +71,11 @@ const Review = () => {
                         </Grid>
                         <br />
                         <div>
+                        <ThemeProvider theme={theme}>
+                                <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toComments}>Back</Button>
+                            </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary">Submit</Button>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={submitFeedback}>Submit</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

@@ -17,6 +17,11 @@ const Comments = () => {
         history.push('/review');
     } // end toReview
 
+    const toSupport = () => {
+        console.log('in toSupport');
+        history.push('/support');
+    } // end toSupport
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -46,7 +51,7 @@ const Comments = () => {
                 <br />
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">Any comments?</Typography>
@@ -63,7 +68,10 @@ const Comments = () => {
                         <br />
                         <div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary" onClick={toReview}>Next</Button>
+                                <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toSupport}>Back</Button>
+                            </ThemeProvider>
+                            <ThemeProvider theme={theme}>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toReview}>Next</Button>
                             </ThemeProvider>
                         </div>
 

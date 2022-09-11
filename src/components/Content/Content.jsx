@@ -17,6 +17,11 @@ const Content = () => {
         history.push('/support');
     } // end toSupport
 
+    const toFeeling = () => {
+        console.log('in goBack');
+        history.push('/');
+    } // end goBack
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -46,7 +51,7 @@ const Content = () => {
                 <br />
                 <Card
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">How well are you understanding the content?</Typography>
@@ -63,7 +68,10 @@ const Content = () => {
                         </form>
                         <div style={{marginTop: 10}}>
                             <ThemeProvider theme={theme}>
-                            <Button variant="contained" color="primary" onClick={toSupport}>Next</Button>
+                            <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toFeeling}>Back</Button>
+                            </ThemeProvider>
+                            <ThemeProvider theme={theme}>
+                            <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toSupport}>Next</Button>
                             </ThemeProvider>
                         </div>
                         

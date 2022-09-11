@@ -17,6 +17,11 @@ const Support = () => {
         history.push('/comments');
     } // end toComments
 
+    const toContent = () => {
+        console.log('in toContent');
+        history.push('/content')
+    } // end toContent
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -46,7 +51,7 @@ const Support = () => {
                 <br />
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">How well are you being supported?</Typography>
@@ -64,7 +69,10 @@ const Support = () => {
                         <br />
                         <div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary" onClick={toComments}>Next</Button>
+                                <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toContent}>Back</Button>
+                            </ThemeProvider>
+                            <ThemeProvider theme={theme}>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toComments}>Next</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

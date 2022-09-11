@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -6,6 +7,8 @@ import { Typography } from '@mui/material';
 
 const SubmitSuccess = () => {
 
+    const history = useHistory();
+
     const theme = createTheme({
         palette: {
             primary: {
@@ -13,6 +16,11 @@ const SubmitSuccess = () => {
             }
         }
     }); // end theme
+
+    const newFeedback = () => {
+        console.log('in newFeedback');
+        history.push('/');
+    } // end newFeedback
 
     return  <div>
                 <Card 
@@ -24,7 +32,7 @@ const SubmitSuccess = () => {
                         <br />
                         <div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary">Start New Feedback</Button>
+                                <Button variant="contained" color="primary" onClick={newFeedback}>Start New Feedback</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

@@ -32,7 +32,7 @@ const Feeling = () => {
                     <Link href="/#/" underline="hover" sx={{fontWeight: '500'}} color="text.primary">
                         Feeling
                     </Link>
-                    <Link href="/#/" underline="hover" color="text.secondary">
+                    <Link href="/#/content" underline="hover" color="text.secondary">
                         Content
                     </Link>
                     <Link href="/#/support" underline="hover" color="text.secondary">
@@ -48,7 +48,7 @@ const Feeling = () => {
                 <br />
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">How are you feeling today?</Typography>
