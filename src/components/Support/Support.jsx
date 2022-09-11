@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -26,21 +27,21 @@ const Support = () => {
 
     return  <div>
                 <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
-                    <Typography color="text.secondary">
+                    <Link href="/#/" underline="hover" color="text.secondary">
                         Feeling
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/content" underline="hover" color="text.secondary">
                         Content
-                    </Typography>
-                    <Typography sx={{fontWeight: '500'}} color="text.primary">
+                    </Link>
+                    <Link href="/#/support" underline="hover" sx={{fontWeight: '500'}} color="text.primary">
                         Support
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/comments" underline="hover" color="text.secondary">
                         Comments
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/review" underline="hover" color="text.secondary">
                         Review
-                    </Typography>
+                    </Link>
                 </Breadcrumbs>
                 <br />
                 <Card 

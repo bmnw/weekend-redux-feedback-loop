@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -28,21 +29,21 @@ const Feeling = () => {
 
     return  <div>
                 <Breadcrumbs style={{display: 'flex', justifyContent: 'center'}}>
-                    <Typography sx={{fontWeight: '500'}} color="text.primary">
+                    <Link href="/#/" underline="hover" sx={{fontWeight: '500'}} color="text.primary">
                         Feeling
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/" underline="hover" color="text.secondary">
                         Content
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/support" underline="hover" color="text.secondary">
                         Support
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/comments" underline="hover" color="text.secondary">
                         Comments
-                    </Typography>
-                    <Typography color="text.secondary">
+                    </Link>
+                    <Link href="/#/review" underline="hover" color="text.secondary">
                         Review
-                    </Typography>
+                    </Link>
                 </Breadcrumbs>
                 <br />
                 <Card 
