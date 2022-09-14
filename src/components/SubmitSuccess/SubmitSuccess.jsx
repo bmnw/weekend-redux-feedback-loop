@@ -25,7 +25,7 @@ const SubmitSuccess = () => {
     return  <div>
                 <Card 
                     sx={{backgroundColor: "#FACFCE"}}
-                    elevation="10"
+                    elevation={10}
                 >
                     <CardContent>
                         <Typography variant="h5">Thanks for your feedback!</Typography>
