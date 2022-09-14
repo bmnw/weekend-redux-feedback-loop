@@ -1,4 +1,6 @@
 import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -11,6 +13,21 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const Comments = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const currentComments = useSelector(store => store.comments);
+
+    const [comments, setComments] = useState('');
+
+    const updateComments = () => {
+        console.log('in updateComments');
+        if(currentComments !== '' && comments === ''){
+            toReview();
+        }else {
+            dispatch({ type: 'update_comments', payload: comments});
+            toReview();
+        }
+    } // end updateComments
 
     const toReview = () => {
         console.log('in toReview');
@@ -56,22 +73,23 @@ const Comments = () => {
                     <CardContent>
                         <Typography variant="h5">Any comments?</Typography>
                         <br />
-                        <form>
+                        <form onSubmit={updateComments}>
                             <TextField 
                                     variant="outlined" 
                                     multiline
                                     size="small" 
                                     sx={{backgroundColor: 'white'}} 
                                     type="text" 
+                                    onChange={(event) => setComments(event.target.value)}
                             />
                         </form>
-                        <br />
+                        <h5>Current comment is: {currentComments}</h5>
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toSupport}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toReview}>Next</Button>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateComments}>Next</Button>
                             </ThemeProvider>
                         </div>
 

@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -13,6 +14,20 @@ const Feeling = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const currentFeeling = useSelector(store => store.feelingRating);
+
+    const [feelingRating, setFeelingRating] = useState('');
+
+    const updateFeelingFeedback = () => {
+        console.log('in updateFeelingFeedback', feelingRating);
+        if(feelingRating === ''){
+            alert('The rating field cannot be left blank.');
+            return;
+        }
+        dispatch({ type: 'update_feeling', payload: feelingRating});
+        toContent();
+    } // end updateFeelingFeedback
 
     const toContent = () => {
         console.log('in toContent');
@@ -54,20 +69,20 @@ const Feeling = () => {
                         <Typography variant="h5">How are you feeling today?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form>
+                        <form onSubmit={updateFeelingFeedback}>
                             <TextField 
                                 variant="outlined" 
                                 required 
                                 size="small" 
                                 sx={{backgroundColor: 'white'}} 
-                                onChange={(event) => dispatch({type: 'append'})} 
+                                onChange={(event) => setFeelingRating(event.target.value)} 
                                 type="number" 
                             />
                         </form>
-                        <br />
+                        <h5>Current rating is: {currentFeeling}</h5>
                         <div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
+                                <Button variant="contained" color="primary" onClick={updateFeelingFeedback}>Next</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

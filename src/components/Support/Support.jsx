@@ -1,4 +1,6 @@
 import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -11,6 +13,21 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const Support = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const currentSupport = useSelector(store => store.supportRating);
+
+    const [supportRating, setSupportRating] = useState('');
+
+    const updateSupportFeedback = () => {
+        console.log('in updateSupportFeedback', supportRating);
+        if(supportRating === ''){
+            alert('The rating field cannot be left blank.');
+            return;
+        }
+        dispatch({ type: 'update_support', payload: supportRating});
+        toComments();
+    } // end updateSupportFeedback
 
     const toComments = () => {
         console.log('in toComments');
@@ -57,22 +74,23 @@ const Support = () => {
                         <Typography variant="h5">How well are you being supported?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form>
+                        <form onSubmit={updateSupportFeedback}>
                             <TextField 
                                     variant="outlined" 
                                     required 
                                     size="small" 
                                     sx={{backgroundColor: 'white'}} 
                                     type="number" 
+                                    onChange={(event) => setSupportRating(event.target.value)}
                             />
                         </form>
-                        <br />
+                        <h5>Current rating is: {currentSupport}</h5>
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toContent}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toComments}>Next</Button>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateSupportFeedback}>Next</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

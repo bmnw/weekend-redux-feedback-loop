@@ -1,4 +1,6 @@
 import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -11,6 +13,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const Content = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const currentContent = useSelector(store => store.contentRating);
+    const [contentRating, setContentRating] = useState('');
+
+    const updateContentFeedback = () => {
+        console.log('in updateContentFeedback', contentRating);
+        if(contentRating === ''){
+            alert('The rating field cannot be left blank.');
+            return;
+        }
+        dispatch({ type: 'update_content', payload: contentRating});
+        toSupport();
+    } // end updateContentFeedback
 
     const toSupport = () => {
         console.log('in toSupport');
@@ -57,21 +73,23 @@ const Content = () => {
                         <Typography variant="h5">How well are you understanding the content?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form>
+                        <form onSubmit={updateContentFeedback}>
                             <TextField 
                                 variant="outlined" 
                                 required 
                                 size="small" 
                                 sx={{backgroundColor: 'white'}} 
                                 type="number" 
+                                onChange={(event) => setContentRating(event.target.value)} 
                             />
                         </form>
+                        <h5>Current rating is: {currentContent}</h5>
                         <div style={{marginTop: 10}}>
                             <ThemeProvider theme={theme}>
                             <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toFeeling}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                            <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toSupport}>Next</Button>
+                            <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateContentFeedback}>Next</Button>
                             </ThemeProvider>
                         </div>
                         
