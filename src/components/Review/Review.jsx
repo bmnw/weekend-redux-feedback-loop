@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -12,10 +13,32 @@ import Grid from '@mui/material/Grid';
 const Review = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
+
     const feeling = useSelector(store => store.feelingRating);
     const content = useSelector(store => store.contentRating);
     const support = useSelector(store => store.supportRating);
     const comments = useSelector(store => store.comments);
+
+    const submitFeedback = () => {
+        console.log('in submitFeedback');
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                feeling: feeling,
+                understanding: content,
+                support: support,
+                comments: comments
+            }
+        }).then(response => {
+            dispatch({type: 'clear_rating'});
+            history.push('/submit-success');
+        }).catch(error => {
+            console.log(error);
+            alert('Something went wrong in submitFeedback');
+        });
+    } // end submitFeedback
 
     const toComments = () => {
         console.log('in toComments');
@@ -29,10 +52,6 @@ const Review = () => {
             }
         }
     }); // end theme
-
-    const submitFeedback = () => {
-        console.log('in submitFeedback');
-    } // end submitFeedback
 
     return  <div>
                 <Breadcrumbs>
