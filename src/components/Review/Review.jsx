@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -11,6 +12,10 @@ import Grid from '@mui/material/Grid';
 const Review = () => {
 
     const history = useHistory();
+    const feeling = useSelector(store => store.feelingRating);
+    const content = useSelector(store => store.contentRating);
+    const support = useSelector(store => store.supportRating);
+    const comments = useSelector(store => store.comments);
 
     const toComments = () => {
         console.log('in toComments');
@@ -57,16 +62,16 @@ const Review = () => {
                         <br />
                         <Grid container spacing="6">
                             <Grid item xs={12}>
-                                <Typography variant="h6">Feeling: </Typography>
+                                <Typography variant="h6">Feeling: {feeling} </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography variant="h6">Content Understanding: </Typography>
+                                <Typography variant="h6">Content Understanding: {content} </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography variant="h6">Support: </Typography>
+                                <Typography variant="h6">Support: {support}</Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography variant="h6">Comments: </Typography>
+                                <Typography variant="h6">Comments: {comments} </Typography>
                             </Grid>
                         </Grid>
                         <br />
