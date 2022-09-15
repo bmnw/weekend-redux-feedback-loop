@@ -15,9 +15,9 @@ const Comments = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const currentComments = useSelector(store => store.comments);
+    const comments = useSelector(store => store.comments);
 
-    const [comments, setComments] = useState('');
+    // const [comments, setComments] = useState('');
 
     const updateComments = () => {
         console.log('in updateComments');
@@ -27,6 +27,9 @@ const Comments = () => {
             dispatch({ type: 'update_comments', payload: comments});
             toReview();
         }
+        // console.log('in updateComments');
+        // if(comments !== '' && event.target.value === ''){toReview();} else {dispatch({ type: 'update_comments', payload: event.target.value });}
+        // set 'event as function parameter
     } // end updateComments
 
     const toReview = () => {
@@ -73,7 +76,7 @@ const Comments = () => {
                     <CardContent>
                         <Typography variant="h5">Any comments?</Typography>
                         <br />
-                        <form onSubmit={updateComments}>
+                        <form onSubmit={toReview}>
                             <TextField 
                                     variant="outlined" 
                                     multiline
@@ -81,15 +84,18 @@ const Comments = () => {
                                     sx={{backgroundColor: 'white'}} 
                                     type="text" 
                                     onChange={(event) => setComments(event.target.value)}
+                                    // value = {comments}
+                                    // onChange={updateComments}
                             />
                         </form>
-                        <h5>Current comment is: {currentComments}</h5>
+                        {/* Remove h5. */}
+                        <h5>Current comment is: {comments}</h5>
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toSupport}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateComments}>Next</Button>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toReview}>Next</Button>
                             </ThemeProvider>
                         </div>
 

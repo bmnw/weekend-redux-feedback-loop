@@ -15,8 +15,8 @@ const Content = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const currentContent = useSelector(store => store.contentRating);
-    const [contentRating, setContentRating] = useState('');
+    const content = useSelector(store => store.contentRating);
+    const [contentRating, setContentRating] = useState(0);
 
     const updateContentFeedback = () => {
         console.log('in updateContentFeedback', contentRating);
@@ -26,10 +26,13 @@ const Content = () => {
         }
         dispatch({ type: 'update_content', payload: contentRating});
         toSupport();
+        // console.log('in updateContentFeedback', event.target.value);
+        // dispatch({ type: 'update_content', payload: event.target.value }); // enter 'event' as function parameter
     } // end updateContentFeedback
 
     const toSupport = () => {
         console.log('in toSupport');
+        // if(content === 0){alert('The rating field cannot be left blank.'); return;}
         history.push('/support');
     } // end toSupport
 
@@ -73,7 +76,7 @@ const Content = () => {
                         <Typography variant="h5">How well are you understanding the content?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form onSubmit={updateContentFeedback}>
+                        <form onSubmit={toSupport}>
                             <TextField 
                                 variant="outlined" 
                                 required 
@@ -81,15 +84,18 @@ const Content = () => {
                                 sx={{backgroundColor: 'white'}} 
                                 type="number" 
                                 onChange={(event) => setContentRating(event.target.value)} 
+                                // value={content}
+                                // onChange={updateContentFeedback}
                             />
                         </form>
-                        <h5>Current rating is: {currentContent}</h5>
+                        {/* Remove h5. */}
+                        <h5>Current rating is: {content}</h5>
                         <div style={{marginTop: 10}}>
                             <ThemeProvider theme={theme}>
                             <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toFeeling}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                            <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateContentFeedback}>Next</Button>
+                            <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toSupport}>Next</Button>
                             </ThemeProvider>
                         </div>
                         

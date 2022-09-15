@@ -32,7 +32,7 @@ const Review = () => {
                 comments: comments
             }
         }).then(response => {
-            dispatch({type: 'clear_rating'});
+            dispatch({type: 'clear_all'});
             history.push('/submit-success');
         }).catch(error => {
             console.log(error);
@@ -87,7 +87,7 @@ const Review = () => {
                                 <Typography variant="h6">Content Understanding: {content} </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography variant="h6">Support: {support}</Typography>
+                                <Typography variant="h6">Support: {support} </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="h6">Comments: {comments} </Typography>

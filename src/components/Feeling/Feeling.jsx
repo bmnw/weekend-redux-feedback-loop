@@ -15,9 +15,9 @@ const Feeling = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const currentFeeling = useSelector(store => store.feelingRating);
+    const feeling = useSelector(store => store.feelingRating);
 
-    const [feelingRating, setFeelingRating] = useState('');
+    const [feelingRating, setFeelingRating] = useState(0);
 
     const updateFeelingFeedback = () => {
         console.log('in updateFeelingFeedback', feelingRating);
@@ -26,11 +26,14 @@ const Feeling = () => {
             return;
         }
         dispatch({ type: 'update_feeling', payload: feelingRating});
-        toContent();
+        toContent(); // remove if dispatching event.target.value
+        // console.log('in udpateFeelingFeedback', event.target.value);
+        // dispatch({ type: 'update_feeling', payload: event.target.value}); // if used, enter 'event' as function parameter
     } // end updateFeelingFeedback
 
     const toContent = () => {
         console.log('in toContent');
+         // if (feeling === 0){alert('The rating field cannot be left blank.'); return;}
         history.push('/content');
     } // end toContent
 
@@ -69,7 +72,7 @@ const Feeling = () => {
                         <Typography variant="h5">How are you feeling today?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form onSubmit={updateFeelingFeedback}>
+                        <form onSubmit={toContent}>
                             <TextField 
                                 variant="outlined" 
                                 required 
@@ -77,12 +80,15 @@ const Feeling = () => {
                                 sx={{backgroundColor: 'white'}} 
                                 onChange={(event) => setFeelingRating(event.target.value)} 
                                 type="number" 
+                                // value={feeling}
+                                // onChange={updateFeelingFeedback}
                             />
                         </form>
-                        <h5>Current rating is: {currentFeeling}</h5>
+                        {/* Remove h5 below if dispatching per lecture. The value should remain in the TextField. */}
+                        <h5>Current rating is: {feeling}</h5> 
                         <div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary" onClick={updateFeelingFeedback}>Next</Button>
+                                <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>

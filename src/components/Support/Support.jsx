@@ -15,7 +15,7 @@ const Support = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const currentSupport = useSelector(store => store.supportRating);
+    const support = useSelector(store => store.supportRating);
 
     const [supportRating, setSupportRating] = useState('');
 
@@ -27,10 +27,13 @@ const Support = () => {
         }
         dispatch({ type: 'update_support', payload: supportRating});
         toComments();
+        // console.log('in updateSupportFeedback', event.target.value); // enter 'event' as function parameter
+        // dispatch({ type: 'update_support', payload: event.target.value });
     } // end updateSupportFeedback
 
     const toComments = () => {
         console.log('in toComments');
+        // if(support === 0){alert('The rating field cannot be left blank.'); return;}
         history.push('/comments');
     } // end toComments
 
@@ -74,7 +77,7 @@ const Support = () => {
                         <Typography variant="h5">How well are you being supported?</Typography>
                         <Typography variant="h6">1: 😟  2: 😕  3: 😐  4: 🙂  5: 😃</Typography>
                         <br />
-                        <form onSubmit={updateSupportFeedback}>
+                        <form onSubmit={toComments}>
                             <TextField 
                                     variant="outlined" 
                                     required 
@@ -82,15 +85,18 @@ const Support = () => {
                                     sx={{backgroundColor: 'white'}} 
                                     type="number" 
                                     onChange={(event) => setSupportRating(event.target.value)}
+                                    // value = {support}
+                                    // onChange = {updateSupportFeedback}
                             />
                         </form>
-                        <h5>Current rating is: {currentSupport}</h5>
+                        {/* Remove h5. */}
+                        <h5>Current rating is: {support}</h5>
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toContent}>Back</Button>
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
-                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={updateSupportFeedback}>Next</Button>
+                                <Button style={{marginLeft: 5}} variant="contained" color="primary" onClick={toComments}>Next</Button>
                             </ThemeProvider>
                         </div>
                     </CardContent>
