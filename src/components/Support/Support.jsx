@@ -19,21 +19,24 @@ const Support = () => {
 
     const [supportRating, setSupportRating] = useState('');
 
-    const updateSupportFeedback = () => {
-        console.log('in updateSupportFeedback', supportRating);
-        if(supportRating === ''){
-            alert('The rating field cannot be left blank.');
-            return;
-        }
-        dispatch({ type: 'update_support', payload: supportRating});
-        toComments();
-        // console.log('in updateSupportFeedback', event.target.value); // enter 'event' as function parameter
-        // dispatch({ type: 'update_support', payload: event.target.value });
+    const updateSupportFeedback = (event) => {
+        // console.log('in updateSupportFeedback', supportRating);
+        // if(supportRating === ''){
+        //     alert('The rating field cannot be left blank.');
+        //     return;
+        // }
+        // dispatch({ type: 'update_support', payload: supportRating});
+        // toComments();
+        console.log('in updateSupportFeedback', event.target.value); // enter 'event' as function parameter
+        dispatch({ type: 'update_support', payload: event.target.value });
     } // end updateSupportFeedback
 
     const toComments = () => {
         console.log('in toComments');
-        // if(support === 0){alert('The rating field cannot be left blank.'); return;}
+        if(support === ''){
+            alert('The rating field cannot be left blank.'); 
+            return;
+        }
         history.push('/comments');
     } // end toComments
 
@@ -84,13 +87,14 @@ const Support = () => {
                                     size="small" 
                                     sx={{backgroundColor: 'white'}} 
                                     type="number" 
-                                    onChange={(event) => setSupportRating(event.target.value)}
-                                    // value = {support}
-                                    // onChange = {updateSupportFeedback}
+                                    // onChange={(event) => setSupportRating(event.target.value)}
+                                    value = {support}
+                                    onChange = {updateSupportFeedback}
                             />
                         </form>
+                        <br />
                         {/* Remove h5. */}
-                        <h5>Current rating is: {support}</h5>
+                        {/* <h5>Current rating is: {support}</h5> */}
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toContent}>Back</Button>

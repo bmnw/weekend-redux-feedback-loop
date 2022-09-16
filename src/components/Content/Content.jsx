@@ -18,21 +18,27 @@ const Content = () => {
     const content = useSelector(store => store.contentRating);
     const [contentRating, setContentRating] = useState(0);
 
-    const updateContentFeedback = () => {
-        console.log('in updateContentFeedback', contentRating);
-        if(contentRating === ''){
-            alert('The rating field cannot be left blank.');
-            return;
-        }
-        dispatch({ type: 'update_content', payload: contentRating});
-        toSupport();
-        // console.log('in updateContentFeedback', event.target.value);
-        // dispatch({ type: 'update_content', payload: event.target.value }); // enter 'event' as function parameter
+    const updateContentFeedback = (event) => {
+        // console.log('in updateContentFeedback', contentRating);
+        // if(contentRating === ''){
+        //     alert('The rating field cannot be left blank.');
+        //     return;
+        // }
+        // dispatch({ type: 'update_content', payload: contentRating});
+        // toSupport();
+        console.log('in updateContentFeedback', event.target.value);
+        dispatch({ type: 'update_content', payload: event.target.value }); // enter 'event' as function parameter
     } // end updateContentFeedback
 
     const toSupport = () => {
         console.log('in toSupport');
-        // if(content === 0){alert('The rating field cannot be left blank.'); return;}
+        if(content === ''){
+            alert('The rating field cannot be left blank.'); 
+            return;
+        } else if (content > 5 || content < 1){
+            alert('Please enter 1 - 5 rating only.');
+            return;
+        }
         history.push('/support');
     } // end toSupport
 
@@ -83,13 +89,14 @@ const Content = () => {
                                 size="small" 
                                 sx={{backgroundColor: 'white'}} 
                                 type="number" 
-                                onChange={(event) => setContentRating(event.target.value)} 
-                                // value={content}
-                                // onChange={updateContentFeedback}
+                                // onChange={(event) => setContentRating(event.target.value)} 
+                                value={content}
+                                onChange={updateContentFeedback}
                             />
                         </form>
+                        <br />
                         {/* Remove h5. */}
-                        <h5>Current rating is: {content}</h5>
+                        {/* <h5>Current rating is: {content}</h5> */}
                         <div style={{marginTop: 10}}>
                             <ThemeProvider theme={theme}>
                             <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toFeeling}>Back</Button>

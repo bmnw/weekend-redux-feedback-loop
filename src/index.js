@@ -7,32 +7,32 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feelingRating = (state = 0, action) => {
+const feelingRating = (state = '', action) => {
     console.log('feelingRating reducer', action);
     if (action.type === 'update_feeling'){
         return action.payload;
     } else if(action.type === 'clear_all'){
-        return 0;
+        return '';
     }
     return state;
 } // end feelingRating
 
-const contentRating = (state = 0, action) => {
+const contentRating = (state = '', action) => {
     console.log('contentRating reducer', action);
     if (action.type === 'update_content'){
         return action.payload;
     } else if(action.type === 'clear_all'){
-        return 0;
+        return '';
     }
     return state;
 } // end contentRating
 
-const supportRating = (state = 0, action) => {
+const supportRating = (state = '', action) => {
     console.log('supportRating reducer', action);
     if (action.type === 'update_support'){
         return action.payload;
     } else if(action.type === 'clear_all'){
-        return 0;
+        return '';
     }
     return state;
 } // end supportRating

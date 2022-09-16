@@ -17,23 +17,29 @@ const Feeling = () => {
 
     const feeling = useSelector(store => store.feelingRating);
 
-    const [feelingRating, setFeelingRating] = useState(0);
+    const [feelingRating, setFeelingRating] = useState('');
 
-    const updateFeelingFeedback = () => {
-        console.log('in updateFeelingFeedback', feelingRating);
-        if(feelingRating === ''){
-            alert('The rating field cannot be left blank.');
-            return;
-        }
-        dispatch({ type: 'update_feeling', payload: feelingRating});
-        toContent(); // remove if dispatching event.target.value
-        // console.log('in udpateFeelingFeedback', event.target.value);
-        // dispatch({ type: 'update_feeling', payload: event.target.value}); // if used, enter 'event' as function parameter
+    const updateFeelingFeedback = (event) => {
+        // console.log('in updateFeelingFeedback', feelingRating);
+        // if(feelingRating === ''){
+        //     alert('The rating field cannot be left blank.');
+        //     return;
+        // }
+        // dispatch({ type: 'update_feeling', payload: feelingRating});
+        // toContent(); 
+        console.log('in udpateFeelingFeedback', event.target.value);
+        dispatch({ type: 'update_feeling', payload: event.target.value}); // if used, enter 'event' as function parameter
     } // end updateFeelingFeedback
 
     const toContent = () => {
         console.log('in toContent');
-         // if (feeling === 0){alert('The rating field cannot be left blank.'); return;}
+        if (feeling === ''){
+            alert('The rating field cannot be left blank.'); 
+            return;
+        } else if (feeling > 5 || feeling < 1){
+            alert('Please enter 1 - 5 rating only.');
+            return;
+        }
         history.push('/content');
     } // end toContent
 
@@ -78,14 +84,15 @@ const Feeling = () => {
                                 required 
                                 size="small" 
                                 sx={{backgroundColor: 'white'}} 
-                                onChange={(event) => setFeelingRating(event.target.value)} 
+                                // onChange={(event) => setFeelingRating(event.target.value)} 
                                 type="number" 
-                                // value={feeling}
-                                // onChange={updateFeelingFeedback}
+                                value={feeling}
+                                onChange={updateFeelingFeedback}
                             />
                         </form>
+                        <br />
                         {/* Remove h5 below if dispatching per lecture. The value should remain in the TextField. */}
-                        <h5>Current rating is: {feeling}</h5> 
+                        {/* <h5>Current rating is: {feeling}</h5>  */}
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button variant="contained" color="primary" onClick={toContent}>Next</Button>
