@@ -19,17 +19,16 @@ const Comments = () => {
 
     // const [comments, setComments] = useState('');
 
-    const updateComments = () => {
-        console.log('in updateComments');
-        if(currentComments !== '' && comments === ''){
-            toReview();
-        }else {
-            dispatch({ type: 'update_comments', payload: comments});
-            toReview();
-        }
+    const updateComments = (event) => {
         // console.log('in updateComments');
-        // if(comments !== '' && event.target.value === ''){toReview();} else {dispatch({ type: 'update_comments', payload: event.target.value });}
-        // set 'event as function parameter
+        // if(currentComments !== '' && comments === ''){
+        //     toReview();
+        // }else {
+        //     dispatch({ type: 'update_comments', payload: comments});
+        //     toReview();
+        // }
+        console.log('in updateComments', event.target.value);
+        dispatch({ type: 'update_comments', payload: event.target.value });
     } // end updateComments
 
     const toReview = () => {
@@ -83,13 +82,14 @@ const Comments = () => {
                                     size="small" 
                                     sx={{backgroundColor: 'white'}} 
                                     type="text" 
-                                    onChange={(event) => setComments(event.target.value)}
-                                    // value = {comments}
-                                    // onChange={updateComments}
+                                    // onChange={(event) => setComments(event.target.value)}
+                                    value = {comments}
+                                    onChange={updateComments}
                             />
                         </form>
+                        <br />
                         {/* Remove h5. */}
-                        <h5>Current comment is: {comments}</h5>
+                        {/* <h5>Current comment is: {comments}</h5> */}
                         <div>
                             <ThemeProvider theme={theme}>
                                 <Button style={{marginRight: 5}} variant="contained" color="primary" onClick={toSupport}>Back</Button>
