@@ -36,8 +36,8 @@ const Feeling = () => {
         if (feeling === ''){
             alert('The rating field cannot be left blank.'); 
             return;
-        } else if (feeling > 5 || feeling < 1){
-            alert('Please enter 1 - 5 rating only.');
+        } else if (feeling > 5 || feeling < 1 || feeling.length > 1){
+            alert('Please enter 1 - 5 rating only. No decimals please.');
             return;
         }
         history.push('/content');

@@ -36,8 +36,8 @@ const Support = () => {
         if(support === ''){
             alert('The rating field cannot be left blank.'); 
             return;
-        } else if (support > 5 || support < 1){
-            alert('Please enter 1 - 5 rating only.');
+        } else if (support > 5 || support < 1 || support.length > 1){
+            alert('Please enter 1 - 5 rating only. No decimals please.');
             return;
         }
         history.push('/comments');
