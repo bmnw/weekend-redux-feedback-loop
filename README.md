@@ -18,6 +18,8 @@ Finally, the user reviews their feedback and submits!
 
 After a successful submission, the user sees a submission-success page and the option to start a new feedback form.
 
+To see the fully functional site, please visit: [How's It Going?](https://shielded-shelf-86602.herokuapp.com/#/)
+
 ## Screen Shots
 
 ![How's It Going? Feeling](public/images/feeling_screenshot.jpg)
